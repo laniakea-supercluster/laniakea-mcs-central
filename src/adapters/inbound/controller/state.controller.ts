@@ -1,13 +1,14 @@
-import { Controller, Get, Inject } from '@nestjs/common';
-import { Domain } from '@/domain/app.domain';
-import { AppUseCase } from '@/application/usescases/app.usecase';
+import { Controller, Get, Inject, Param } from '@nestjs/common';
+import { StateUseCase } from '@/application/usescases/state.usecase';
+import { State } from '@/modules/schemas/state.schema';
 
 @Controller('/state')
 export class StateController {
-  constructor(@Inject(AppUseCase) private readonly appUseCase: AppUseCase) {}
+  constructor(@Inject(StateUseCase) private readonly stateUseCase: StateUseCase) {}
 
   @Get()
-  getDomain(): Domain {
-    return this.appUseCase.getDomain();
+  list(): Promise<State[]> {
+    return this.stateUseCase.findAll();
   }
+
 }

@@ -1,1 +1,1 @@
-# laniakea-mcs-template
+# laniakea-mcs-region
